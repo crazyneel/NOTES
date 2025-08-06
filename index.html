@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WHATIN - AKTU Unit-wise Notes</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&family=Pacifico&display=swap" rel="stylesheet"/>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+
+    body {
+      background: linear-gradient(to right, #d4fc79, #96e6a1);
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.8);
+      border-bottom: 2px solid #4cbfa6;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .header-container {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+    }
+
+    .logo-title {
+      display: flex; align-items: center; gap: 15px;
+    }
+
+    .logo-title img { height: 50px; }
+
+    .logo-title h1 { font-size: 2rem; font-weight: 700; color: #2a7b68; }
+
+    nav button {
+      background: transparent; border: 2px solid #2a7b68; color: #2a7b68;
+      font-weight: bold; padding: 0.5rem 1.2rem; margin: 0 0.5rem;
+      border-radius: 8px; cursor: pointer; transition: all 0.3s;
+    }
+
+    nav button:hover { background: #2a7b68; color: white; box-shadow: 0 0 8px rgba(42,123,104,0.4); }
+
+    main { padding: 2rem; max-width: 1000px; margin: auto; }
+
+    .intro { margin-bottom: 1.5rem; font-size: 1.15rem; color: #2f4f4f; }
+
+    .branch-heading { font-size: 1.5rem; font-weight: bold; margin-bottom: 1.2rem; color: #2a7b68; }
+
+    .btn-group {
+      display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 2rem;
+    }
+
+    .btn-group button {
+      padding: 1rem 2rem; background: #4cbfa6; color: white; font-weight: bold;
+      font-size: 1.1rem; border-radius: 8px; border: none; cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .btn-group button:hover { background: #2a7b68; transform: scale(1.05); }
+
+    .year-section {
+      display: none; opacity: 0; transform: translateY(10px); transition: all 0.4s ease;
+    }
+
+    .year-section.active { display: block; opacity: 1; transform: translateY(0); }
+
+    .year-section h3 {
+      color: #2a7b68; font-size: 1.8rem; margin-bottom: 1.2rem; text-align: center;
+    }
+
+    .subject-item {
+      background: white; padding: 1rem; margin: 0.75rem 0; border-radius: 12px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 1.05rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease; cursor: pointer;
+    }
+
+    .subject-item:hover { transform: translateY(-3px); background: #f8fdfb; }
+
+    .units-container {
+      max-height: 0; overflow: hidden; transition: max-height 0.5s ease;
+    }
+
+    .unit-box {
+      background: #f8fdfb; padding: 0.7rem 1rem; border-radius: 8px; margin: 0.5rem 0;
+      display: flex; justify-content: space-between; align-items: center; border: 1px solid #d0f0e8;
+    }
+
+    .unit-box a {
+      color: white; text-decoration: none; padding: 0.3rem 0.8rem;
+      background: #4cbfa6; border-radius: 5px; display: flex; align-items: center; gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .unit-box a:hover { background: #2a7b68; }
+
+    footer {
+      text-align: center; padding: 1rem; font-size: 0.9rem;
+      background-color: rgba(255, 255, 255, 0.7); color: #2a7b68;
+    }
+
+    /* Popup Styles */
+    #popup {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center;
+      z-index: 9999; opacity: 1; transition: opacity 0.5s ease;
+    }
+
+    #popup.hide { opacity: 0; pointer-events: none; }
+
+    .popup-content {
+      background: white; padding: 2rem; border-radius: 10px;
+      text-align: center; max-width: 400px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .popup-content h2 { color: #2a7b68; margin-bottom: 0.5rem; }
+    .popup-content p { color: #333; }
+  </style>
+</head>
+<body>
+
+  <!-- Popup -->
+  <div id="popup">
+    <div class="popup-content">
+      <h2>👋 Welcome to WHATIN</h2>
+      <p>Please fill out the Google Form and complete the payment in the About section to access the PDF.
+      </p>
+      <p><strong>Founder:</strong> Dushyant Saini</p>
+    </div>
+  </div>
+
+  <header>
+    <div class="header-container">
+      <div class="logo-title">
+        <img src="whatinlogo.png" alt="WHATIN Logo">
+        <h1>WHATIN - AKTU Unit-wise Notes</h1>
+      </div>
+      <nav>
+        <button onclick="showHome()">Home</button>
+        <button onclick="showAbout()">About</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <p class="intro">Select your year, click a subject to reveal unit-wise PDFs.</p>
+    <div class="branch-heading">Branch: Computer Science & Engineering (CSE)</div>
+
+    <div class="btn-group">
+      <button data-target="year1">1st Year</button>
+      <button data-target="year2">2nd Year</button>
+    </div>
+
+    <!-- Year 1 -->
+    <section class="year-section" id="year1">
+      <h3>1st Year</h3>
+
+      <!-- Mathematics 2-->
+      <div class="subject-item" onclick="toggleUnits(this)">
+        <span>Mathematics-2</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="units-container">
+        <div class="unit-box"><span>Unit 1</span><a href="https://drive.google.com/file/d/14D80Dqwss83QSK7s5y72vKJ2GBXRzZkc/view?usp=drive_link"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 2</span><a href="https://drive.google.com/file/d/1cL7O5xTk-TVhVUsHIHjSglZUzbR_onak/view?usp=drive_link"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 3</span><a href="https://drive.google.com/file/d/1igBGHOoFe2zO9EGkDucwikNf5WsEndfc/view?usp=drive_link"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 4</span><a href="https://drive.google.com/file/d/1tZ4QkF752lvvqVvsovy8vDYSvNgst8nY/view?usp=drive_link"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 5</span><a href="https://drive.google.com/file/d/1uNAUFG4RyTipVkIhWwe7svkYsfgy_IJk/view?usp=drive_link"><i class="fas fa-eye"></i> View</a></div>
+      </div>
+
+      <!-- CHEMISTRY -->
+      <div class="subject-item" onclick="toggleUnits(this)">
+        <span>Chemistry</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="units-container">
+        <div class="unit-box"><span>Unit 1</span><a href="https://drive.google.com/file/d/1Vnw2-0aZPOs4ejTDBOdCHFGJzG2nmkpY/view?usp=drive_link"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 2</span><a href="https://drive.google.com/file/d/1VHc4vPGYkjw7AUU351deM-j1hPxA1EUU/view?usp=drive_link"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 3</span><a href="https://drive.google.com/file/d/1pScs-MeP3bMp7Y-QCBMU39zpVuw8cKLZ/view?usp=drive_link"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 4</span><a href="https://drive.google.com/file/d/1EwM7Y_z_PBM44dc6VRJGRpezY-gOPDgp/view?usp=drive_link"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 5</span><a href="https://drive.google.com/file/d/1_SaX6IWHObzITkk9Wabn9d8Dulk-huPu/view?usp=drive_link"><i class="fas fa-eye"></i> View</a></div>
+      </div>
+<!--FME-->
+      <div class="subject-item" onclick="toggleUnits(this)">
+        <span>Mechanical</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="units-container">
+        <div class="unit-box"><span>Unit 1</span><a href="https://drive.google.com/file/d/1ZwuCtRvaU_pvJM_SNyeHAR-zVZezo2jC/view?usp=drive_link"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 2</span><a href="https://drive.google.com/file/d/1QPqwv9I1OOQ0GfnxrmdCoqv1VuLUEdBu/view?usp=drive_link"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 3</span><a href="https://drive.google.com/file/d/1nexep1aqXJTVEZuHQyCTlG4-Ki2SThOK/view?usp=drive_link"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 4</span><a href="https://drive.google.com/file/d/1rI2ST2AGhX6WsNLmH4qCeL6dUF6E5Hji/view?usp=drive_link"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 5</span><a href="https://drive.google.com/file/d/1xXAerSqQOWPSxJEfnPsHtbm5Do1u4GVl/view?usp=drive_link"><i class="fas fa-eye"></i> View</a></div>
+      </div>
+    </section>
+
+    <!-- 2nd year -->
+    <section class="year-section" id="year2">
+      <h3>2nd Year</h3>
+      <p style="text-align:center;">Coming Soon...</p>
+        <div class="subject-item" onclick="toggleUnits(this)">
+        <span>Mathematics-4</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="units-container">
+        <div class="unit-box"><span>Unit 1</span><a href="#"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 2</span><a href="#"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 3</span><a href="#"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 4</span><a href="#"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 5</span><a href="#"><i class="fas fa-eye"></i> View</a></div>
+      </div>
+           <!--DSTL-->
+        <div class="subject-item" onclick="toggleUnits(this)">
+        <span>DSTL</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="units-container">
+        <div class="unit-box"><span>Unit 1</span><a href="#"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 2</span><a href="#"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 3</span><a href="#"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 4</span><a href="#"><i class="fas fa-eye"></i> View</a></div>
+        <div class="unit-box"><span>Unit 5</span><a href="#"><i class="fas fa-eye"></i> View</a></div>
+      </div>
+    </section>
+  </main>
+
+  <section class="about-section" id="about" style="display:none;padding:2rem;">
+    <h2 style="color:#2a7b68;">About WHATIN</h2>
+    <p>We Hack Amazing Tech Ideas for Nextgen. Providing academic resources unit-wise for AKTU students.</p>
+    <p><strong>Founder:</strong> Dushyant Saini</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 WHATIN. All rights reserved.<br>
+    <span style="font-size:0.85rem;">no complain</span></p>
+  </footer>
+
+  <script>
+    const buttons = document.querySelectorAll(".btn-group button");
+    const yearSections = document.querySelectorAll(".year-section");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        yearSections.forEach(section => section.classList.remove("active"));
+        const target = btn.getAttribute("data-target");
+        document.getElementById(target).classList.add("active");
+      });
+    });
+
+    function showHome() {
+      document.getElementById("main-content").style.display = "block";
+      document.getElementById("about").style.display = "none";
+    }
+
+    function showAbout() {
+      document.getElementById("main-content").style.display = "none";
+      document.getElementById("about").style.display = "block";
+    }
+
+    function toggleUnits(subjectElement) {
+      const units = subjectElement.nextElementSibling;
+      if (units.style.maxHeight) {
+        units.style.maxHeight = null;
+      } else {
+        units.style.maxHeight = units.scrollHeight + "px";
+      }
+    }
+
+    document.getElementById("year1").classList.add("active");
+
+    // Popup hide after 5 seconds
+    window.onload = function() {
+      setTimeout(() => {
+        document.getElementById("popup").classList.add("hide");
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
