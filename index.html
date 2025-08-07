@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WHATIN - AKTU Unit-wise Notes</title>
 
-  <!-- Google Fonts -->
+  
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&family=Pacifico&display=swap" rel="stylesheet"/>
-  <!-- Font Awesome Icons -->
+ 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 
   <style>
@@ -18,7 +18,7 @@
       color: #333;
     }
 
-    /* Header */
+  
     header {
       padding: 1.5rem;
       background: rgba(255, 255, 255, 0.8);
@@ -105,7 +105,7 @@
       background-color: rgba(255, 255, 255, 0.7); color: #2a7b68;
     }
 
-    /* Popup Styles */
+ 
     #popup {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center;
@@ -125,7 +125,7 @@
 </head>
 <body>
 
-  <!-- Popup -->
+
   <div id="popup">
     <div class="popup-content">
       <h2>👋 Welcome to WHATIN</h2>
@@ -157,11 +157,11 @@
       <button data-target="year2">2nd Year</button>
     </div>
 
-    <!-- Year 1 -->
+  
     <section class="year-section" id="year1">
       <h3>1st Year</h3>
 
-      <!-- Mathematics 2-->
+    
       <div class="subject-item" onclick="toggleUnits(this)">
         <span>Mathematics-2</span>
         <i class="fas fa-chevron-down"></i>
@@ -174,7 +174,7 @@
         <div class="unit-box"><span>Unit 5</span><a href="https://drive.google.com/file/d/1uNAUFG4RyTipVkIhWwe7svkYsfgy_IJk/view?usp=drive_link"><i class="fas fa-eye"></i> View</a></div>
       </div>
 
-      <!-- CHEMISTRY -->
+   
       <div class="subject-item" onclick="toggleUnits(this)">
         <span>Chemistry</span>
         <i class="fas fa-chevron-down"></i>
@@ -186,7 +186,7 @@
         <div class="unit-box"><span>Unit 4</span><a href="https://drive.google.com/file/d/1EwM7Y_z_PBM44dc6VRJGRpezY-gOPDgp/view?usp=drive_link"><i class="fas fa-eye"></i> View</a></div>
         <div class="unit-box"><span>Unit 5</span><a href="https://drive.google.com/file/d/1_SaX6IWHObzITkk9Wabn9d8Dulk-huPu/view?usp=drive_link"><i class="fas fa-eye"></i> View</a></div>
       </div>
-<!--FME-->
+
       <div class="subject-item" onclick="toggleUnits(this)">
         <span>Mechanical</span>
         <i class="fas fa-chevron-down"></i>
@@ -200,7 +200,7 @@
       </div>
     </section>
 
-    <!-- 2nd year -->
+ 
     <section class="year-section" id="year2">
       <h3>2nd Year</h3>
       <p style="text-align:center;">Coming Soon...</p>
@@ -215,7 +215,7 @@
         <div class="unit-box"><span>Unit 4</span><a href="#"><i class="fas fa-eye"></i> View</a></div>
         <div class="unit-box"><span>Unit 5</span><a href="#"><i class="fas fa-eye"></i> View</a></div>
       </div>
-           <!--DSTL-->
+          
         <div class="subject-item" onclick="toggleUnits(this)">
         <span>DSTL</span>
         <i class="fas fa-chevron-down"></i>
@@ -274,7 +274,7 @@
 
     document.getElementById("year1").classList.add("active");
 
-    // Popup hide after 5 seconds
+   
     window.onload = function() {
       setTimeout(() => {
         document.getElementById("popup").classList.add("hide");
