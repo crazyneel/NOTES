@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up | Premium Notes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary-green: #38a169;
+      --light-green: #e9f5e9;
+      --text-color: #333;
+      --white-bg: #ffffff;
+      --border-color: #ddd;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light-green);
+      background-image: radial-gradient(circle at top left, var(--light-green), #d4edc4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      color: var(--text-color);
+    }
+    .main-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      background-color: var(--white-bg);
+      border-radius: 12px;
+      box-shadow: 0 8px 25px var(--shadow-color);
+      overflow: hidden;
+      max-width: 1100px;
+      width: 100%;
+      transition: transform 0.3s ease-in-out;
+    }
+    .main-wrapper:hover {
+      transform: scale(1.01);
+    }
+    .content-section, .form-section {
+      flex: 1;
+      padding: 40px;
+      min-width: 300px;
+    }
+    .content-section {
+      background: linear-gradient(to top right, var(--primary-green), #66bb6a);
+      color: var(--white-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+    .content-section::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: -50px;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.05);
+      transform: rotate(45deg);
+      z-index: 0;
+    }
+    .content-section h1 {
+      font-size: 2.6rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+      z-index: 1;
+    }
+    .content-section p {
+      font-size: 1rem;
+      line-height: 1.6;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+      z-index: 1;
+    }
+    .content-section ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 2rem;
+      z-index: 1;
+    }
+    .content-section ul li {
+      margin-bottom: 0.8rem;
+      font-size: 1rem;
+      opacity: 0.9;
+      position: relative;
+      padding-left: 25px;
+    }
+    .content-section ul li::before {
+      content: '✓';
+      color: var(--white-bg);
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: bold;
+    }
+    .signup-box {
+      padding: 30px 0;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInAnimation 0.8s ease-out forwards;
+    }
+    @keyframes fadeInAnimation {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h2 {
+      color: var(--primary-green);
+      margin-bottom: 25px;
+      font-size: 2.2rem;
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: slideDownAnimation 0.6s ease-out forwards;
+      animation-delay: 0.3s;
+    }
+    @keyframes slideDownAnimation {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .input-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    input[type="text"], input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+      border-color: var(--primary-green);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(56, 161, 105, 0.2);
+    }
+    .signup-btn {
+      width: 100%;
+      padding: 15px;
+      background-color: var(--primary-green);
+      color: var(--white-bg);
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: scale(0.9);
+      animation: popInAnimation 0.5s ease-out forwards;
+      animation-delay: 0.6s;
+    }
+    .signup-btn:hover {
+      background-color: #277e53;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(56, 161, 105, 0.3);
+    }
+    @keyframes popInAnimation {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .login-link {
+      margin-top: 25px;
+      font-size: 0.9rem;
+      opacity: 0;
+      animation: fadeInAnimation 0.8s ease-out forwards;
+      animation-delay: 0.9s;
+    }
+    .login-link a {
+      color: var(--primary-green);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-wrapper">
+    <!-- Left Section -->
+    <div class="content-section">
+      <h1>Premium Notes Platform</h1>
+      <p>Welcome to a smarter way of learning! Access high-quality handwritten notes crafted for your success. Save time, focus on what matters, and boost your exam performance.</p>
+      <h3>Why Choose Us?</h3>
+      <ul>
+        <li>Concise and exam-oriented notes.</li>
+        <li>Secure and easy access.</li>
+        <li>24/7 student support.</li>
+        <li>Compatible on all devices.</li>
+      </ul>
+      <p>Sign up now and start your journey towards better results!</p>
+    </div>
+
+    <!-- Right Section (Signup Form) -->
+    <div class="form-section">
+      <div class="signup-box">
+        <h2>Create Your Account</h2>
+        <form id="signupForm">
+          <div class="input-group">
+            <label for="username">Full Name</label>
+            <input type="text" id="username" required />
+          </div>
+          <div class="input-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" required />
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" required />
+          </div>
+          <div class="input-group">
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" required />
+          </div>
+          <button type="submit" class="signup-btn">Sign Up</button>
+        </form>
+        <div class="login-link">
+          Already have an account? <a href="login.html">Log In</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics.js";
+    import { getAuth, createUserWithEmailAndPassword, updateProfile } 
+      from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBvVN6PgcUKxYWCFavHSzCeUsi7VsnPpVQ",
+      authDomain: "premiumm-notes.firebaseapp.com",
+      projectId: "premiumm-notes",
+      storageBucket: "premiumm-notes.firebasestorage.app",
+      messagingSenderId: "86904484037",
+      appId: "1:86904484037:web:ce39234877dabe685800ac",
+      measurementId: "G-5VLNDH09RH"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+
+    // Signup Function
+    document.getElementById("signupForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm-password").value;
+
+      if (password !== confirmPassword) {
+        alert("❌ Passwords do not match!");
+        return;
+      }
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+
+          updateProfile(user, { displayName: name })
+            .then(() => {
+              alert("✅ Signup Successful! Redirecting...");
+              window.location.href = "login.html";
+            });
+        })
+        .catch((error) => {
+          alert("❌ Error: " + error.message);
+        });
+    });
+  </script>
+</body>
+</html>
