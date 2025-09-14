@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary-green: #38a169;
+      --light-green: #e9f5e9;
+      --text-color: #333;
+      --white-bg: #ffffff;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light-green);
+      background-image: radial-gradient(circle at top left, var(--light-green), #d4edc4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      color: var(--text-color);
+    }
+    .profile-card {
+      background: var(--white-bg);
+      padding: 40px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 8px 25px var(--shadow-color);
+      width: 90%;
+      max-width: 450px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      color: var(--primary-green);
+    }
+    #userEmail {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--primary-green);
+      margin-bottom: 20px;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 15px;
+      margin: 15px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      color: #fff;
+    }
+    .btn-content { background-color: var(--primary-green); }
+    .btn-content:hover { background-color: #277e53; transform: translateY(-2px); }
+    .btn-logout { background-color: #ff4b5c; }
+    .btn-logout:hover { background-color: #e63946; transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <div class="profile-card">
+    <h1>Welcome!</h1>
+    <p id="userEmail">Loading...</p>
+    <p>Aapka profile taiyar hai. Ab aap apne notes ko access kar sakte hain ya logout kar sakte hain.</p>
+    
+    <button id="goContentBtn" class="btn btn-content">
+      <i class="fas fa-arrow-right"></i> Go to Content
+    </button>
+    <button id="logoutBtn" class="btn btn-logout">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBvVN6PgcUKxYWCFavHSzCeUsi7VsnPpVQ",
+      authDomain: "premiumm-notes.firebaseapp.com",
+      projectId: "premiumm-notes",
+      storageBucket: "premiumm-notes.firebasestorage.app",
+      messagingSenderId: "86904484037",
+      appId: "1:86904484037:web:ce39234877dabe685800ac",
+      measurementId: "G-5VLNDH09RH"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // User check
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        document.getElementById("userEmail").innerText = "Email: " + user.email;
+      } else {
+        window.location.href = "login.html";
+      }
+    });
+
+    // Button clicks
+    document.getElementById("goContentBtn").addEventListener("click", () => {
+      window.location.href = "content.html";
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      signOut(auth).then(() => {
+        window.location.href = "login.html";
+      }).catch((error) => {
+        alert("Logout error: " + error.message);
+      });
+    });
+  </script>
+</body>
+</html>
