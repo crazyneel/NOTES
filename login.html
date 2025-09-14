@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beautiful Animated Login Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-green: #38a169;
+      --light-green: #e9f5e9;
+      --text-color: #333;
+      --white-bg: #ffffff;
+      --border-color: #ddd;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light-green);
+      background-image: radial-gradient(circle at top left, var(--light-green), #d4edc4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      color: var(--text-color);
+    }
+    .main-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      background-color: var(--white-bg);
+      border-radius: 12px;
+      box-shadow: 0 8px 25px var(--shadow-color);
+      overflow: hidden;
+      max-width: 1100px;
+      width: 100%;
+      transition: transform 0.3s ease-in-out;
+    }
+    .main-wrapper:hover { transform: scale(1.01); }
+    .content-section, .form-section { flex: 1; padding: 40px; min-width: 300px; }
+    .content-section {
+      background: linear-gradient(to top right, var(--primary-green), #66bb6a);
+      color: var(--white-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+    .content-section h1 { font-size: 2.8rem; margin-bottom: 10px; font-weight: 600; }
+    .content-section p { font-size: 1rem; line-height: 1.6; opacity: 0.9; margin-bottom: 1.5rem; }
+    .content-section ul { list-style: none; margin-bottom: 2rem; }
+    .content-section ul li { margin-bottom: 0.8rem; font-size: 1rem; opacity: 0.8; position: relative; padding-left: 25px; }
+    .content-section ul li::before { content: '✓'; color: var(--white-bg); position: absolute; left: 0; top: 0; font-weight: bold; }
+
+    /* 🔥 Highlighted Notes Box */
+    .notes-box {
+      background: #fff3cd;
+      color: #d9534f;
+      border: 2px solid #f0ad4e;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      animation: pulse 1.5s infinite;
+    }
+    .notes-box small {
+      display: block;
+      font-size: 1rem;
+      color: #333;
+      margin-top: 10px;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .login-box { padding: 30px 0; text-align: center; }
+    h2 { color: var(--primary-green); margin-bottom: 25px; font-size: 2.2rem; font-weight: 600; }
+    .input-group { margin-bottom: 20px; text-align: left; }
+    label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.95rem; }
+    input[type="email"], input[type="password"] {
+      width: 100%; padding: 12px; border: 1px solid var(--border-color);
+      border-radius: 8px; font-size: 1rem;
+    }
+    .login-btn {
+      width: 100%; padding: 15px; background-color: var(--primary-green);
+      color: var(--white-bg); border: none; border-radius: 8px;
+      font-size: 1.1rem; font-weight: 600; cursor: pointer;
+    }
+    .login-btn:hover { background-color: #277e53; }
+  </style>
+</head>
+<body>
+  <div class="main-wrapper">
+    <!-- Left Section -->
+    <div class="content-section">
+      <h1>Phir se Swagat Hai!</h1>
+      <p>Aapki digital yatra aage badhane ke liye taiyar hai. Login kariye aur un suvidhaon ka laabh uthaiye jo aapko ek naye level par le jayengi.</p>
+      
+      <!-- 🔥 Highlight Box -->
+      <div class="notes-box">
+        MATRA ₹99 ME NOTES!  
+        <small>Abhi "About" box me jaakar Google Form bhariye aur apne handwritten notes payiye.</small>
+      </div>
+
+      <h3>Hamari Visheshtayein:</h3>
+      <ul>
+        <li>Samay bachat aur aasan upyog.</li>
+        <li>Ati-aadhunik suraksha.</li>
+        <li>24/7 customer support.</li>
+        <li>Har device ke saath anukool.</li>
+      </ul>
+    </div>
+
+    <!-- Right Section (Login Form) -->
+    <div class="form-section">
+      <div class="login-box">
+        <h2>Log In</h2>
+        <form id="loginForm">
+          <div class="input-group">
+            <label for="username">Email</label>
+            <input type="email" id="username" name="username" required>
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+          </div>
+          <button type="submit" class="login-btn">Log In</button>
+        </form>
+        <div class="signup-link">
+          Don't have an account? <a href="index.html">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ Firebase Modular SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBvVN6PgcUKxYWCFavHSzCeUsi7VsnPpVQ",
+      authDomain: "premiumm-notes.firebaseapp.com",
+      projectId: "premiumm-notes",
+      storageBucket: "premiumm-notes.appspot.com",
+      messagingSenderId: "86904484037",
+      appId: "1:86904484037:web:ce39234877dabe685800ac",
+      measurementId: "G-5VLNDH09RH"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.getElementById('loginForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const email = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          localStorage.setItem("userEmail", email);
+          window.location.href = "profile.html";
+        })
+        .catch((error) => {
+          alert("Login Failed: " + error.message);
+        });
+    });
+  </script>
+</body>
+</html>
